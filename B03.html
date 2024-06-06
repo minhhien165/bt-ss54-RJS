@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sumWithPromise(numbers) {
+            return new Promise((resolve, reject) => {
+                if (!Array.isArray(numbers) || numbers.some(num => typeof num !== 'number')) {
+                    reject(new Error("Tất cả các phần tử trong mảng phải là số."));
+                    return;
+                }
+                const sum = numbers.reduce((accumulator, num) => accumulator + num, 0);
+                resolve(sum );
+            });
+        }
+
+        const numbersArray = [1, 2, 3, 4, 5,6,7];
+
+        sumWithPromise(numbersArray)
+            .then(sum => {
+                console.log(`Tổng của mảng ${numbersArray} là: ${sum}`);
+            })
+            .catch(error => {
+                console.error("Lỗi:", error.message);
+            });
+    </script>
+</body>
+</html>
